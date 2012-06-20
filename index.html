@@ -35,11 +35,6 @@
   
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
-  <!-- All JavaScript at the bottom, except this Modernizr build.
-       Modernizr enables HTML5 elements & feature detects for optimal performance.
-       Create your own custom Modernizr build: www.modernizr.com/download/ -->
-  <script src="extras/h5bp/js/libs/modernizr-2.5.3.min.js"></script>
-
 </head>
 <body>
 
@@ -160,9 +155,9 @@
   <script>window.jQuery || document.write('<script src="extras/h5bp/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
   
   <!-- Full Bootstrap js file. -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="Kickstrap/js/bootstrap.min.js"></script>
 
-  <script id="extras">document.write(stripslashes($('#extras').css('content')));
+  <script class="extras">document.write(stripslashes($('.extras').css('content')));
 	function stripslashes(str) {
 		str=str.replace(/\\'/g,'\'');
 		str=str.replace(/\\"/g,'"');
