@@ -30,6 +30,7 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
   
   <!-- Core Bootstrap css + Kickstrap styles -->
+
   <link rel="stylesheet/less" type="text/css" href="theme.less">
   <script type="text/javascript" src="Kickstrap/js/less-1.3.0.js"></script>
   
@@ -157,14 +158,18 @@
   <!-- Full Bootstrap js file. -->
   <script type="text/javascript" src="Kickstrap/js/bootstrap.min.js"></script>
 
-  <script class="extras">document.write(stripslashes($('.extras').css('content')));
-	function stripslashes(str) {
-		str=str.replace(/\\'/g,'\'');
-		str=str.replace(/\\"/g,'"');
-		str=str.replace(/\\0/g,'\0');
-		str=str.replace(/\\\\/g,'\\');
-		str=str.substring(1,str.length-1);
-		return str;
+  <script id="express-mode" type="text/javascript">
+ 	appendMagic();
+	function appendMagic() {
+		document.write(stripslashes($('#express-mode').css('content')));
+		function stripslashes(str) {
+			str=str.replace(/\\'/g,'\'');
+			str=str.replace(/\\"/g,'"');
+			str=str.replace(/\\0/g,'\0');
+			str=str.replace(/\\\\/g,'\\');
+			str=str.substring(1,str.length-1);
+			return str;
+		}
 	}
   </script>
 
