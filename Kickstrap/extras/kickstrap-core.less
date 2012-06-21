@@ -1,3 +1,7 @@
+// No cache by default.
+@importedJS: "<script class=\"extras\" type=\"text/javascript\">localStorage.clear();less.watch();console.warn('Kickstrap: You are currently NOT caching your styles.');</script>";
+script#caching {content: @importedJS;}
+
 // Bring in the main settings
 @import "../settings.less";
 

@@ -1,6 +1,7 @@
 // Express mode: This just switches Kickstrap to use less.js on the client side for fast development.
 
-@importedJS: "<script class=\"extras\" type=\"text/javascript\">localStorage.clear();less.watch();console.warn('DEV MODE: Kickstrap is currently set to NOT cache your styles. To enable style caching, head to settings.');</script>";
+@importedJS: "<script class=\"extras\" type=\"text/javascript\">console.log('Kickstrap: Style caching enabled.')</script>";
+script#caching {content: @importedJS;}
 
 script#caching {
 	content: @importedJS;
