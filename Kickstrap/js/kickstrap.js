@@ -15,3 +15,11 @@
 		console.log('Cache has been cleared. Reloading...');
 		location.reload(true);
 	}
+	
+	function consoleLog(msg, msgType) {
+		if(typeof window.consoleLogger == 'function') {
+			consoleLogger(msg, msgType);
+		}
+		
+	}
+	
