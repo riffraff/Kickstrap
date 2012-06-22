@@ -797,6 +797,16 @@ less.Parser = function Parser(env) {
                     }
                 },
 
+				// A Kickstrap constant
+				// We get to prune these from the LESS and do whatever we want with them.
+				kickstrap: function () {
+                    var name, index = i;
+
+                    if (input.charAt(i) === 'ø' && (name = $(/^@@?[\w-]+/))) {
+                        return new(tree.Kickstrap)(name, index, env.filename);
+                    }
+                },
+
                 //
                 // A Hexadecimal color
                 //
@@ -854,6 +864,14 @@ less.Parser = function Parser(env) {
                 var name;
 
                 if (input.charAt(i) === '@' && (name = $(/^(@[\w-]+)\s*:/))) { return name[1] }
+            },
+
+			// And again for Kickstrap
+
+            kickstrap: function () {
+                var name;
+
+                if (input.charAt(i) === 'ø' && (name = $(/^(@[\w-]+)\s*:/))) { return name[1] }
             },
 
             //
@@ -1161,7 +1179,7 @@ less.Parser = function Parser(env) {
                 if (c === '.' || c === '#' || c === '&') { return }
 
                 if (name = $(this.variable) || $(this.property)) {
-                    if ((name.charAt(0) != '@') && (match = /^([^@+\/'"*`(;{}-]*);/.exec(chunks[j]))) {
+                    if (((name.charAt(0) != '@') && (name.charAt(0) != 'ø')) && (match = /^([^@+\/'"*`(;{}-]*);/.exec(chunks[j]))) {
                         i += match[0].length - 1;
                         value = new(tree.Anonymous)(match[1]);
                     } else if (name === "font") {
@@ -1263,7 +1281,7 @@ less.Parser = function Parser(env) {
             directive: function () {
                 var name, value, rules, types, e, nodes;
 
-                if (input.charAt(i) !== '@') return;
+                if ((input.charAt(i) !== '@') && (input.charAt(i) !== 'ø')) return;
 
                 if (value = $(this['import']) || $(this.media)) {
                     return value;
@@ -3079,6 +3097,36 @@ tree.Variable.prototype = {
         }
     }
 };
+
+// Special Kickstrap Vars
+
+})(require('../tree'));
+(function (tree) {
+
+tree.Kickstrap = function (name, index, file) { this.name = name, this.index = index, this.file = file };
+tree.Kickstrap.prototype = {
+    eval: function (env) {
+        var kickstrap, v, name = this.name;
+
+        if (name.indexOf('@@') == 0) {
+            name = '@' + new(tree.Kickstrap)(name.slice(1)).eval(env).value;
+        }
+
+        if (kickstrap = tree.find(env.frames, function (frame) {
+            if (v = frame.kickstrap(name)) {
+                return v.value.eval(env);
+            }
+        })) { return kickstrap }
+        else {
+            throw { type: 'Name',
+                    message: "Kickstrap var " + name + " is undefined",
+                    filename: this.file,
+                    index: this.index };
+        }
+    }
+};
+
+// End Special Kickstrap Vars
 
 })(require('../tree'));
 (function (tree) {
