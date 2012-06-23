@@ -33,3 +33,7 @@ queue.txt
 .CVS
 .idea
 queue
+
+# Kickstrap internal stuff
+publish.sh
+publish

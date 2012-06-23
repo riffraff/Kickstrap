@@ -2,9 +2,6 @@
 @importedJS: "<script class=\"extras\" type=\"text/javascript\">localStorage.clear();less.watch();consoleLog('Kickstrap: You are currently NOT caching your styles.', 'warn');</script>";
 script#caching {content: @importedJS;}
 
-// Bring in the main settings
-@import "../settings.less";
-
 // Let's import bootstrap so we can begin overriding it.
 @import "../less/bootstrap.less";
 
@@ -78,7 +75,7 @@ script#caching {content: @importedJS;}
       #gradient > .striped(#5bc0de);
     }
     
-  // jGROWL THEMES
+  // jGROWL THEMES // TODO: Make this part of the package. 
   // -------------
   
   div.jGrowl div.warning {
@@ -327,6 +324,5 @@ footer#footer {
 //-----------------------
 //END BOOTSTRAP OVERRIDES
 
-// Is there a theme specified in settings?
-@tempVar: 'themes/united/theme';
-//@import url(@tempVar);
+// Bring in the main settings
+@import "../settings.less";

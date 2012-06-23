@@ -23,3 +23,7 @@
 		
 	}
 	
+	function build() {
+		window.open('publish.sh');
+	}
+	
