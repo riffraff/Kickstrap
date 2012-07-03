@@ -20,10 +20,5 @@
 		if(typeof window.consoleLogger == 'function') {
 			consoleLogger(msg, msgType);
 		}
-		
 	}
-	
-	function build() {
-		window.open('publish.sh');
-	}
-	
+
