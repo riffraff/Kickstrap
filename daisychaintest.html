@@ -4,13 +4,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Daisy Chained JS from CSS</title>
 	<style>
-		.extras {
-			content:"<script class=\"extras2\" type=\"text/javascript\">appendMagic('.extras2');</script>";
+		#one {
+			content:"<script class=\"extras\" id=\"two\" type=\"text/javascript\">appendMagic();</script>";
 		}
-		.extras2 {
-			content:"<script class=\"extras3\" type=\"text/javascript\">appendMagic('.extras3');</script>";
+		#two {
+			content:"<script class=\"extras\" id=\"three\" type=\"text/javascript\">appendMagic();</script>";
 		}
-		.extras3 {
+		#three {
 			content:"a";
 		}
 	</style>
@@ -18,9 +18,13 @@
 <body>
 	<p>This is a demo of daisy-chaining JavaScript using the CSS "Content" attribute.</p>
 	<script type="text/javascript" src="Kickstrap/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" class="extras" id="daisyChain">
-	appendMagic('#daisyChain');
-	function appendMagic(appendee) {
+	<script type="text/javascript" class="extras" id="one">
+	appendMagic();
+	function appendMagic() {
+	
+	var appendee = '#' + $('.extras').last().attr('id');
+	console.log(appendee);
+	
 		document.write(stripslashes($(appendee).css('content')));
 		function stripslashes(str) {
 			str=str.replace(/\\'/g,'\'');
