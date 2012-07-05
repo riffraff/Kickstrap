@@ -20,11 +20,26 @@ function togglePreview() {
 	}
 }
 
+// Quick adjustments
+$('#ksp-lum-plus').live('click', function() {
+	setColor(tinycolor.lighten(cColor));
+});
+$('#ksp-lum-minus').live('click', function() {
+	setColor(tinycolor.darken(cColor));
+});
+$('#ksp-sat-plus').live('click', function() {
+	setColor(tinycolor.saturate(cColor));
+});
+$('#ksp-sat-minus').live('click', function() {
+	setColor(tinycolor.desaturate(cColor));
+});
+// End quick adjustments
+
 // Allow the user to set the user once and quickly output in a variety of ways.
 function setColor(inputColor) {
 
 	if(!($('#ks-previewer').length)) {
-		$('body').append('<div id="ks-previewer"><div id="ksp-one"></div><div id="ksp-two"></div><div id="ksp-three"></div><div id="ksp-four"></div><div id="ksp-five"></div><div id="ksp-six"></div></div>');
+		$('body').append('<div id="ks-previewer"><a id="ksp-lum-plus">Lum +</a><a id="ksp-lum-minus">Lum -</a><a id="ksp-sat-plus">Sat +</a><a id="ksp-sat-minus">Sat -</a><div id="ksp-one"></div><div id="ksp-two"></div><div id="ksp-three"></div><div id="ksp-four"></div><div id="ksp-five"></div><div id="ksp-six"></div></div>');
 	}
 
 	cColor = tinycolor(inputColor);
