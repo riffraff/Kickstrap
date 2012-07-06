@@ -1,0 +1,1 @@
+The deployment folder isn't part of the Kickstrap OEM, it's just a nice way to create the end user product (In the product folder)
