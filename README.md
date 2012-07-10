@@ -1,4 +1,6 @@
-Version 0.9.1 RC
+Version 0.99
+
+[These docs will be changed significantly. I hope to have them reflect the experimental branch by the end of June. Thank you for your patience.]
 
 The Gist
 ========
